@@ -1,80 +1,68 @@
+
+import math
+import pandas as pd
+import copy
 import numpy as np
-from sklearn.preprocessing import StandardScaler
-from datetime import date, timedelta
+import sys
 
+sys.path.append('/Users/alejandrobonell/ds-Alerts')
+from src.time_series import timeSeries
 
-GROUP_KEYS = ["project_dataset_id", "category_id", "segment", "intent"]
-STORY_DELTA = 8  # number of previous weeks/days we will compare the current date with
-STORY_STD_MARGIN = 2  # multiplicity of STORY_DELTA to avoid standardization issues
-STORY_INCREASE_THRESHOLD = 50  # threshold to determine if an increase is a story
-STORY_VOLUME_THRESHOLD = 50  # threshold to determine if there are enough documents to have a story
-STORY_NORM_DATASET_THRESHOLD = 0.5  # threshold to determine if, relative to the dataset, there are enough documents
-MAX_N_OUTPUT_TERMS = 10
+class algorithmAnomalyTimeSeries():
+    """
+        A subclass of Time Series more focused on the anomaly properties of the time series
+    """
+    def __init__(self, window:int, absolute_threshold:float=10, a:float=0.5, multiplier:float=1.96):
 
-# To calculate trends, it will use a maximum of 1000 terms or
-# N_COMPUTATION_TERMS_RATIO * number of total documents
-N_COMPUTATION_TERMS_RATIO = 0.5
-MAX_COMPUTATION_TERMS = 1000
+        #hyperparameters Algorithm
+        self.threshold = absolute_threshold
+        self.a = a
+        self.multiplier = multiplier
+        self.window = window
 
-
-class NotAnomalyDetected(Exception):
-    """Raised when no anomaly detected"""
-    pass
-
-class AnomalyTS:
-    None
-
-class Anomaly:
-    def __init__(self, time_series):
-        self.time_series = time_series
-        self.ts = np.array(time_series.get("volume"))
-        self.ts_scaled = []
-
-    def get_baseline(self):
+    def detect_alerts(self, time_series:timeSeries):
         """
-        Objective: from time_series, identify the anomaly and convert it in a Story
+        Method to detect the alerts of the whole time series!
         """
+        
+        modified_time_series = copy.deepcopy(time_series)
+        alerts_idx = []
+        alerts = pd.Series([np.nan]*len(time_series.time_series), index=time_series.time_series.index)
+        threshold = max(self.threshold, time_series.time_series.median())
 
-        if len(self.ts) > 1:
-            scaler = StandardScaler()
-            # we fit scaler on the values except the last one that we transform according to the fitted scaler
-            self.ts_scaled = scaler.fit_transform(self.ts[:-1].reshape(-1, 1)).reshape(-1)
-            self.ts_scaled = np.concatenate((self.ts_scaled, scaler.transform(self.ts[-1].reshape(-1, 1)).reshape(-1)))
 
-            if self.is_candidate_an_anomaly():
-                #self.define_anomaly()
-                #return self.story
-                return 'is an anomaly'
-            else:
-                raise NotAnomalyDetected()
-        else:
-            raise NotAnomalyDetected()
+        for i in range(len(modified_time_series.time_series)):
 
-    def is_candidate_an_anomaly(self):
-        return (
-            self.is_significant(self.ts, STORY_VOLUME_THRESHOLD)
-            #and self.is_significant(self.ts_n_dataset, STORY_NORM_DATASET_THRESHOLD)
-            and self.is_increasing(self.ts_scaled)
-            #and self.is_increasing(self.ts_n)
-            and self.alert_th_mean_n_days(self.ts)
-            and self.alert_th_mean_n_days(self.ts_scaled)
-            #and self.alert_th_mean_n_days(self.ts_n)
-        )
+            # FIRST PART: Compute the upper bound & lower bound
+            modified_time_series.compute_trend(self.window)
+            modified_time_series.compute_std(self.window)
 
-    def is_significant(self, ts: np.ndarray, threshold: int):
-        return ts[-1] >= threshold
+            ### Let's check the confidence intervals are available
+            if i == 0 or math.isnan(modified_time_series.trend[i]):
+                continue
 
-    def is_increasing(self, ts: np.ndarray, min_length: int = STORY_DELTA):
-        """
-        Objective: getting all the series. If the series does not grow, or has less than d data, we get rid of it.
-        """
-        return len(ts) >= min_length and ts[-1] > ts[-2]
+            upper_bound = modified_time_series.trend + (self.multiplier * modified_time_series.std)
+            lower_bound = modified_time_series.trend - (self.multiplier * modified_time_series.std)
 
-    def alert_th_mean_n_days(self, ts: np.ndarray, d: int = STORY_DELTA):
-        """
-        Objective: define anomaly according to last d days
-                   if the increasing rate is higher than a threshold th we flag otherwise we don't
-        """
-        mean = np.mean(ts[-d:-1]) if len(ts[-d:-1]) > 0 else 0
-        return mean != 0 and ((ts[-1] - mean) / abs(mean)) * 100 > STORY_INCREASE_THRESHOLD
+            #SECOND PART: Detect the alert
 
+            if modified_time_series.time_series[i] > upper_bound[i] \
+                  and modified_time_series.time_series[i] > threshold:
+            
+                # THIRD PART: Store the alert
+                alerts_idx.append(i)
+                alerts[i] = time_series.time_series[i]
+
+                # FOURTH PART a): UPDATE the time series
+                modified_time_series.time_series[i] = modified_time_series.time_series[i] - self.a*(modified_time_series.time_series[i] - upper_bound[i])
+
+
+            if modified_time_series.time_series[i] < lower_bound[i]:
+
+                # FOURTH PART b) : UPDATE the time series
+                modified_time_series.time_series[i] = modified_time_series.time_series[i] + self.a*(lower_bound[i] - modified_time_series.time_series[i])
+            
+
+
+        return {'alerts':alerts, 'alerts_idx':alerts_idx, 'modified_time_series':modified_time_series, 'original_time_series':time_series}
+    
