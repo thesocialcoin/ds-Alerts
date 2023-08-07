@@ -1,5 +1,19 @@
 # Alerts  
 
+![](/img/pipeline.png)
+
+## Anomaly Detection
+
+- Tutorial NOTEBOOK [HERE](/notebooks/ab-variants-anomaly-ts.ipynb)
+
+- code time series [HERE](/src/time_series.py)
+
+- code anomaly detection algo [HERE](/src/anomaly.py)
+
+
+## Extract Narratives
+
+
 
 ## Bibliography
 
