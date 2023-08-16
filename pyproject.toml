@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "ds-alerts"
+name = "ds-Alerts"
 version = "0.0.0"
 description = ""
 authors = ["Alejandro Bonell <abonell@citibeats.com>"]
