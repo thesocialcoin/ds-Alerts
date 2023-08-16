@@ -1,0 +1,2 @@
+
+[34m[1mwandb[39m[22m: [33mWARNING[39m The wandb callback is currently in beta and is subject to change based on updates to `langchain`. Please report any issues to https://github.com/wandb/wandb/issues with the tag `langchain`.

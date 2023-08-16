@@ -1,0 +1,33 @@
+{
+    "os": "macOS-13.2.1-arm64-arm-64bit",
+    "python": "3.9.16",
+    "heartbeatAt": "2023-08-12T06:32:27.032220",
+    "startedAt": "2023-08-12T06:32:25.536623",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "<python with no main file>",
+    "git": {
+        "remote": "https://github.com/thesocialcoin/ds-Alerts.git",
+        "commit": "bff798b1fbe77c78a08e0a20832ddc300798d6e1"
+    },
+    "email": "bonells96@gmail.com",
+    "root": "/Users/alejandrobonell/ds-Alerts",
+    "host": "Alejandros-MacBook-Air.local",
+    "username": "alejandrobonell",
+    "executable": "/Users/alejandrobonell/.pyenv/versions/miniforge3-4.10.3-10/envs/query_betterment/bin/python",
+    "cpu_count": 8,
+    "cpu_count_logical": 8,
+    "disk": {
+        "total": 460.4317207336426,
+        "used": 11.95269775390625
+    },
+    "gpuapple": {
+        "type": "arm",
+        "vendor": "Apple"
+    },
+    "memory": {
+        "total": 16.0
+    }
+}
