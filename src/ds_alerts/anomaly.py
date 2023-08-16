@@ -4,7 +4,7 @@ import copy
 import numpy as np
 import sys
 
-from src.time_series import timeSeries
+from .time_series import timeSeries
 
 sys.path.append("/Users/alejandrobonell/ds-Alerts")
 
