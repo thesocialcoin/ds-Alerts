@@ -4,7 +4,7 @@ version = "0.0.0"
 description = ""
 authors = ["Alejandro Bonell <abonell@citibeats.com>"]
 readme = "README.md"
-packages = [{include = "ds-alerts", from = "src"}]
+packages = [{include = "ds-alerts"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
