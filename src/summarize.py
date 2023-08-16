@@ -16,13 +16,12 @@ def count_tokens(texts: str) -> int:
     return len(input_ids)
 
 
-
-def select_texts_per_day(data: pd.DataFrame, day:str) -> List[str]:
+def select_texts_per_day(data: pd.DataFrame, day: str) -> List[str]:
     # Convert the 'day' string to a datetime object
     day = pd.to_datetime(day)
 
     # Select rows where the date is 'day' and get the 'text' column
-    selected_texts = data.loc[data['date'] == day, 'text']
+    selected_texts = data.loc[data["date"] == day, "text"]
 
     # Convert to list and return
     return selected_texts.tolist()
@@ -31,7 +30,6 @@ def select_texts_per_day(data: pd.DataFrame, day:str) -> List[str]:
 def generate_summarizer(
     texts,
 ):
-
     text = f"- {texts[0]}"
     for text_ in texts[1:]:
         if can_add_tokens(text, text):
@@ -49,17 +47,16 @@ def generate_summarizer(
         temperature=0.7,
         top_p=0.5,
         frequency_penalty=0.5,
-        messages=
-       [
-         {
-          "role": "system",
-          "content": f"Act as if you are an unbiased journalist and "
-                + "your editor tells you to write a summary of texts in english"
-         },
-         {
-          "role": "user",
-          "content": f"{prompt}: {text}",
-         },
+        messages=[
+            {
+                "role": "system",
+                "content": "Act as if you are an unbiased journalist and your "
+                + "editor tells you to write a summary of texts in english",
+            },
+            {
+                "role": "user",
+                "content": f"{prompt}: {text}",
+            },
         ],
     )
     return res["choices"][0]["message"]["content"]
