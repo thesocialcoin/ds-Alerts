@@ -1,0 +1,315 @@
+2023-08-12 08:29:51,074 INFO    StreamThr :73384 [internal.py:wandb_internal():86] W&B internal server running at pid: 73384, started at: 2023-08-12 08:29:51.072695
+2023-08-12 08:29:51,075 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status
+2023-08-12 08:29:51,076 INFO    WriterThread:73384 [datastore.py:open_for_write():85] open: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/run-cppf0vtv.wandb
+2023-08-12 08:29:51,078 DEBUG   SenderThread:73384 [sender.py:send():379] send: header
+2023-08-12 08:29:51,078 DEBUG   SenderThread:73384 [sender.py:send():379] send: run
+2023-08-12 08:29:51,511 INFO    SenderThread:73384 [dir_watcher.py:__init__():211] watching files in: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files
+2023-08-12 08:29:51,511 INFO    SenderThread:73384 [sender.py:_start_run_threads():1121] run started: cppf0vtv with start time 1691821790.228772
+2023-08-12 08:29:51,516 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: summary_record
+2023-08-12 08:29:51,516 INFO    SenderThread:73384 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-12 08:29:51,522 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: check_version
+2023-08-12 08:29:51,522 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: check_version
+2023-08-12 08:29:51,637 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: run_start
+2023-08-12 08:29:51,638 DEBUG   HandlerThread:73384 [system_info.py:__init__():31] System info init
+2023-08-12 08:29:51,638 DEBUG   HandlerThread:73384 [system_info.py:__init__():46] System info init done
+2023-08-12 08:29:51,638 INFO    HandlerThread:73384 [system_monitor.py:start():181] Starting system monitor
+2023-08-12 08:29:51,638 INFO    SystemMonitor:73384 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-08-12 08:29:51,638 INFO    HandlerThread:73384 [system_monitor.py:probe():201] Collecting system info
+2023-08-12 08:29:51,639 INFO    SystemMonitor:73384 [interfaces.py:start():190] Started cpu monitoring
+2023-08-12 08:29:51,639 DEBUG   HandlerThread:73384 [system_info.py:probe():195] Probing system
+2023-08-12 08:29:51,639 INFO    SystemMonitor:73384 [interfaces.py:start():190] Started disk monitoring
+2023-08-12 08:29:51,639 INFO    SystemMonitor:73384 [interfaces.py:start():190] Started gpuapple monitoring
+2023-08-12 08:29:51,643 INFO    SystemMonitor:73384 [interfaces.py:start():190] Started memory monitoring
+2023-08-12 08:29:51,646 DEBUG   HandlerThread:73384 [system_info.py:_probe_git():180] Probing git
+2023-08-12 08:29:51,646 INFO    SystemMonitor:73384 [interfaces.py:start():190] Started network monitoring
+2023-08-12 08:29:51,684 DEBUG   HandlerThread:73384 [system_info.py:_probe_git():188] Probing git done
+2023-08-12 08:29:51,684 DEBUG   HandlerThread:73384 [system_info.py:probe():240] Probing system done
+2023-08-12 08:29:51,684 DEBUG   HandlerThread:73384 [system_monitor.py:probe():210] {'os': 'macOS-13.2.1-arm64-arm-64bit', 'python': '3.9.16', 'heartbeatAt': '2023-08-12T06:29:51.639513', 'startedAt': '2023-08-12T06:29:50.210822', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '<python with no main file>', 'git': {'remote': 'https://github.com/thesocialcoin/ds-Alerts.git', 'commit': 'bff798b1fbe77c78a08e0a20832ddc300798d6e1'}, 'email': 'bonells96@gmail.com', 'root': '/Users/alejandrobonell/ds-Alerts', 'host': 'Alejandros-MacBook-Air.local', 'username': 'alejandrobonell', 'executable': '/Users/alejandrobonell/.pyenv/versions/miniforge3-4.10.3-10/envs/query_betterment/bin/python', 'cpu_count': 8, 'cpu_count_logical': 8, 'disk': {'total': 460.4317207336426, 'used': 11.95269775390625}, 'gpuapple': {'type': 'arm', 'vendor': 'Apple'}, 'memory': {'total': 16.0}}
+2023-08-12 08:29:51,684 INFO    HandlerThread:73384 [system_monitor.py:probe():211] Finished collecting system info
+2023-08-12 08:29:51,684 INFO    HandlerThread:73384 [system_monitor.py:probe():214] Publishing system info
+2023-08-12 08:29:51,684 DEBUG   HandlerThread:73384 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-08-12 08:29:51,685 DEBUG   HandlerThread:73384 [system_info.py:_save_pip():67] Saving pip packages done
+2023-08-12 08:29:51,685 DEBUG   HandlerThread:73384 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2023-08-12 08:29:52,518 INFO    Thread-57 :73384 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/wandb-summary.json
+2023-08-12 08:29:52,518 INFO    Thread-57 :73384 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/conda-environment.yaml
+2023-08-12 08:29:52,519 INFO    Thread-57 :73384 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/requirements.txt
+2023-08-12 08:29:52,763 DEBUG   HandlerThread:73384 [system_info.py:_save_conda():86] Saving conda packages done
+2023-08-12 08:29:52,764 INFO    HandlerThread:73384 [system_monitor.py:probe():216] Finished publishing system info
+2023-08-12 08:29:52,765 DEBUG   SenderThread:73384 [sender.py:send():379] send: files
+2023-08-12 08:29:52,765 INFO    SenderThread:73384 [sender.py:_save_file():1375] saving file wandb-metadata.json with policy now
+2023-08-12 08:29:52,776 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-12 08:29:52,776 DEBUG   SenderThread:73384 [sender.py:send():379] send: telemetry
+2023-08-12 08:29:52,777 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: stop_status
+2023-08-12 08:29:53,321 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: pause
+2023-08-12 08:29:53,321 INFO    HandlerThread:73384 [handler.py:handle_request_pause():728] stopping system metrics thread or process
+2023-08-12 08:29:53,321 INFO    HandlerThread:73384 [system_monitor.py:finish():190] Stopping system monitor
+2023-08-12 08:29:53,321 DEBUG   SystemMonitor:73384 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-08-12 08:29:53,321 INFO    HandlerThread:73384 [interfaces.py:finish():202] Joined cpu monitor
+2023-08-12 08:29:53,321 DEBUG   SystemMonitor:73384 [system_monitor.py:_start():166] Finished system metrics aggregation loop
+2023-08-12 08:29:53,321 INFO    HandlerThread:73384 [interfaces.py:finish():202] Joined disk monitor
+2023-08-12 08:29:53,321 DEBUG   SystemMonitor:73384 [system_monitor.py:_start():170] Publishing last batch of metrics
+2023-08-12 08:29:53,321 INFO    HandlerThread:73384 [interfaces.py:finish():202] Joined gpuapple monitor
+2023-08-12 08:29:53,322 INFO    HandlerThread:73384 [interfaces.py:finish():202] Joined memory monitor
+2023-08-12 08:29:53,322 INFO    HandlerThread:73384 [interfaces.py:finish():202] Joined network monitor
+2023-08-12 08:29:53,323 DEBUG   SenderThread:73384 [sender.py:send():379] send: telemetry
+2023-08-12 08:29:53,323 DEBUG   SenderThread:73384 [sender.py:send():379] send: stats
+2023-08-12 08:29:53,331 INFO    wandb-upload_0:73384 [upload_job.py:push():131] Uploaded file /var/folders/jx/rrb06xvd6sd_k9800xyzvp4w0000gn/T/tmpcbvt5o_0wandb/7ogc6pkc-wandb-metadata.json
+2023-08-12 08:29:53,522 INFO    Thread-57 :73384 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/wandb-metadata.json
+2023-08-12 08:29:56,335 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:30:01,358 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:30:06,372 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:30:07,782 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-12 08:30:07,783 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: stop_status
+2023-08-12 08:30:12,039 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:30:17,053 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:30:22,077 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:30:22,639 INFO    Thread-57 :73384 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/config.yaml
+2023-08-12 08:30:22,788 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-12 08:30:22,789 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: stop_status
+2023-08-12 08:30:27,973 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:30:32,991 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:30:37,791 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-12 08:30:37,791 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: stop_status
+2023-08-12 08:30:37,995 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:30:43,013 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:30:48,030 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:30:52,792 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-12 08:30:52,793 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: stop_status
+2023-08-12 08:30:53,115 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:30:58,136 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:31:03,153 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:31:07,797 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-12 08:31:07,798 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: stop_status
+2023-08-12 08:31:09,005 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:31:14,024 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:31:19,042 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:31:22,800 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-12 08:31:22,800 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: stop_status
+2023-08-12 08:31:24,962 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:31:29,975 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:31:34,988 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:31:37,805 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-12 08:31:37,806 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: stop_status
+2023-08-12 08:31:40,031 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:31:45,048 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:31:49,689 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: resume
+2023-08-12 08:31:49,690 INFO    HandlerThread:73384 [handler.py:handle_request_resume():719] starting system metrics thread or process
+2023-08-12 08:31:49,690 INFO    HandlerThread:73384 [system_monitor.py:start():181] Starting system monitor
+2023-08-12 08:31:49,690 INFO    SystemMonitor:73384 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-08-12 08:31:49,691 INFO    SystemMonitor:73384 [interfaces.py:start():190] Started cpu monitoring
+2023-08-12 08:31:49,691 INFO    SystemMonitor:73384 [interfaces.py:start():190] Started disk monitoring
+2023-08-12 08:31:49,692 INFO    SystemMonitor:73384 [interfaces.py:start():190] Started gpuapple monitoring
+2023-08-12 08:31:49,693 INFO    SystemMonitor:73384 [interfaces.py:start():190] Started memory monitoring
+2023-08-12 08:31:49,698 INFO    SystemMonitor:73384 [interfaces.py:start():190] Started network monitoring
+2023-08-12 08:31:50,065 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:31:52,810 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-12 08:31:52,811 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: stop_status
+2023-08-12 08:31:55,959 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:32:00,972 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:32:05,986 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:32:07,815 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-12 08:32:07,816 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: stop_status
+2023-08-12 08:32:11,048 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:32:15,114 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: log_artifact
+2023-08-12 08:32:15,115 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: log_artifact
+2023-08-12 08:32:15,369 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: log_artifact
+2023-08-12 08:32:15,380 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-12 08:32:15,588 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: log_artifact
+2023-08-12 08:32:16,082 INFO    Thread-57 :73384 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/media/table/session_analysis_0_82a36b1234638de06bed.table.json
+2023-08-12 08:32:16,082 INFO    Thread-57 :73384 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/media/table/action_records_0_84d6f6a0379743bee320.table.json
+2023-08-12 08:32:16,083 INFO    Thread-57 :73384 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/media
+2023-08-12 08:32:16,083 INFO    Thread-57 :73384 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/media/table
+2023-08-12 08:32:16,558 INFO    wandb-upload_0:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmppgosm3ap
+2023-08-12 08:32:16,598 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: poll_exit
+2023-08-12 08:32:16,731 INFO    wandb-upload_1:73384 [upload_job.py:push():131] Uploaded file /var/folders/jx/rrb06xvd6sd_k9800xyzvp4w0000gn/T/tmpcbvt5o_0wandb/npfw8ami-media/table/session_analysis_0_82a36b1234638de06bed.table.json
+2023-08-12 08:32:16,820 INFO    wandb-upload_2:73384 [upload_job.py:push():131] Uploaded file /var/folders/jx/rrb06xvd6sd_k9800xyzvp4w0000gn/T/tmpcbvt5o_0wandb/13alf9g0-media/table/action_records_0_84d6f6a0379743bee320.table.json
+2023-08-12 08:32:17,414 INFO    SenderThread:73384 [sender.py:send_request_log_artifact():1441] logged artifact run-cppf0vtv-action_records - {'id': 'QXJ0aWZhY3Q6NTM5OTY0NDE5', 'digest': '6bdc54d153d78123958efd568acb23e6', 'state': 'PENDING', 'aliases': [], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjg5OTIyMTEz', 'latestArtifact': None}, 'version': 'latest'}
+2023-08-12 08:32:17,415 DEBUG   SenderThread:73384 [sender.py:send():379] send: files
+2023-08-12 08:32:17,415 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:32:17,415 INFO    SenderThread:73384 [sender.py:_save_file():1375] saving file media/table/action_records_0_84d6f6a0379743bee320.table.json with policy now
+2023-08-12 08:32:17,417 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: log_artifact
+2023-08-12 08:32:18,177 INFO    wandb-upload_0:73384 [upload_job.py:push():131] Uploaded file /var/folders/jx/rrb06xvd6sd_k9800xyzvp4w0000gn/T/tmpcbvt5o_0wandb/s4k18fme-media/table/action_records_0_84d6f6a0379743bee320.table.json
+2023-08-12 08:32:18,737 INFO    wandb-upload_4:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpdrfokjm1
+2023-08-12 08:32:18,749 INFO    wandb-upload_17:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpso9ebmcl
+2023-08-12 08:32:18,807 INFO    wandb-upload_26:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpqjv9tzdp
+2023-08-12 08:32:18,886 INFO    wandb-upload_7:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpb4z3_5m4
+2023-08-12 08:32:18,911 INFO    wandb-upload_15:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmp9ojymbrq
+2023-08-12 08:32:19,053 INFO    wandb-upload_8:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmp3_xz_oao
+2023-08-12 08:32:19,075 INFO    wandb-upload_35:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpt2t_guh9
+2023-08-12 08:32:19,113 INFO    wandb-upload_23:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpm7yok97z
+2023-08-12 08:32:19,123 INFO    wandb-upload_10:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmp2lc5ochk
+2023-08-12 08:32:19,127 INFO    wandb-upload_25:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpial953wu
+2023-08-12 08:32:19,161 INFO    wandb-upload_40:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmp49hna9f4
+2023-08-12 08:32:19,161 INFO    wandb-upload_39:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmp9hif4_o2
+2023-08-12 08:32:19,171 INFO    wandb-upload_5:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmp5q8ujil3
+2023-08-12 08:32:19,175 INFO    wandb-upload_12:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmph9ni_6cx
+2023-08-12 08:32:19,189 INFO    wandb-upload_21:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmp6vebxi48
+2023-08-12 08:32:19,190 INFO    wandb-upload_28:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmp8u8xwns8
+2023-08-12 08:32:19,195 INFO    wandb-upload_38:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpoa7x51iy
+2023-08-12 08:32:19,197 INFO    wandb-upload_11:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpp0cnsb9u
+2023-08-12 08:32:19,198 INFO    wandb-upload_33:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpr_58w962
+2023-08-12 08:32:19,202 INFO    wandb-upload_29:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmp2ipey6xp
+2023-08-12 08:32:19,206 INFO    wandb-upload_37:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpqz4pcup7
+2023-08-12 08:32:19,210 INFO    wandb-upload_24:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpj7gmoqpb
+2023-08-12 08:32:19,220 INFO    wandb-upload_3:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmp4usode9y
+2023-08-12 08:32:19,221 INFO    wandb-upload_14:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmp_86xa_sn
+2023-08-12 08:32:19,221 INFO    wandb-upload_30:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpasb_ayek
+2023-08-12 08:32:19,221 INFO    wandb-upload_22:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpjrk8nvpy
+2023-08-12 08:32:19,225 INFO    wandb-upload_6:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpildh1vdb
+2023-08-12 08:32:19,231 INFO    wandb-upload_18:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpu9sdmi78
+2023-08-12 08:32:19,231 INFO    wandb-upload_19:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmp4_4pxy1z
+2023-08-12 08:32:19,233 INFO    wandb-upload_13:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpjqu1xw13
+2023-08-12 08:32:19,239 INFO    wandb-upload_2:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpi2zun0t4
+2023-08-12 08:32:19,240 INFO    wandb-upload_1:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmp0i9ddly1
+2023-08-12 08:32:19,243 INFO    wandb-upload_36:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpf4_kstsn
+2023-08-12 08:32:19,243 INFO    wandb-upload_32:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmps7xxro0k
+2023-08-12 08:32:19,244 INFO    wandb-upload_16:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpyc9_4in_
+2023-08-12 08:32:19,249 INFO    wandb-upload_20:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpi6_7h3_0
+2023-08-12 08:32:19,249 INFO    wandb-upload_9:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmph8nzcmf4
+2023-08-12 08:32:19,252 INFO    wandb-upload_34:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpxntvl0kt
+2023-08-12 08:32:19,255 INFO    wandb-upload_27:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmp6ejb3gjd
+2023-08-12 08:32:19,255 INFO    wandb-upload_31:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpozzfk2fk
+2023-08-12 08:32:19,516 INFO    wandb-upload_41:73384 [upload_job.py:push():89] Uploaded file /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmpink0bg5n
+2023-08-12 08:32:20,267 INFO    SenderThread:73384 [sender.py:send_request_log_artifact():1441] logged artifact run-cppf0vtv-session_analysis - {'id': 'QXJ0aWZhY3Q6NTM5OTY0NDQ3', 'digest': 'ba96d6b97e216601ed227f431a8a04be', 'state': 'PENDING', 'aliases': [], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjg5OTIyMTI5', 'latestArtifact': None}, 'version': 'latest'}
+2023-08-12 08:32:20,267 DEBUG   SenderThread:73384 [sender.py:send():379] send: files
+2023-08-12 08:32:20,267 INFO    SenderThread:73384 [sender.py:_save_file():1375] saving file media/table/session_analysis_0_82a36b1234638de06bed.table.json with policy now
+2023-08-12 08:32:20,268 DEBUG   SenderThread:73384 [sender.py:send():379] send: history
+2023-08-12 08:32:20,269 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: summary_record
+2023-08-12 08:32:20,270 INFO    SenderThread:73384 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-12 08:32:20,270 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: log_artifact
+2023-08-12 08:32:21,006 INFO    wandb-upload_0:73384 [upload_job.py:push():131] Uploaded file /var/folders/jx/rrb06xvd6sd_k9800xyzvp4w0000gn/T/tmpcbvt5o_0wandb/zruw4why-media/table/session_analysis_0_82a36b1234638de06bed.table.json
+2023-08-12 08:32:21,094 INFO    wandb-upload_17:73384 [upload_job.py:push():86] Skipped uploading /Users/alejandrobonell/Library/Application Support/wandb/artifacts/staging/tmp4ekj_65p
+2023-08-12 08:32:21,108 INFO    Thread-57 :73384 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/wandb-summary.json
+2023-08-12 08:32:21,623 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: keepalive
+2023-08-12 08:32:22,185 INFO    SenderThread:73384 [sender.py:send_request_log_artifact():1441] logged artifact model - {'id': 'QXJ0aWZhY3Q6NTM5OTY0NDc0', 'digest': 'ecf01f947babcccc95b62a33486ab49e', 'state': 'PENDING', 'aliases': [], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjg5ODQxNjg0', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6NTM5OTYzMDk3', 'versionIndex': 1}}, 'version': 'latest'}
+2023-08-12 08:32:22,186 DEBUG   SenderThread:73384 [sender.py:send():379] send: telemetry
+2023-08-12 08:32:22,186 DEBUG   SenderThread:73384 [sender.py:send():379] send: exit
+2023-08-12 08:32:22,187 INFO    SenderThread:73384 [sender.py:send_exit():584] handling exit code: 0
+2023-08-12 08:32:22,188 INFO    SenderThread:73384 [sender.py:send_exit():586] handling runtime: 27
+2023-08-12 08:32:22,189 INFO    SenderThread:73384 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-12 08:32:22,190 INFO    SenderThread:73384 [sender.py:send_exit():592] send defer
+2023-08-12 08:32:22,190 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: poll_exit
+2023-08-12 08:32:22,191 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: defer
+2023-08-12 08:32:22,191 INFO    HandlerThread:73384 [handler.py:handle_request_defer():170] handle defer: 0
+2023-08-12 08:32:22,192 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: defer
+2023-08-12 08:32:22,193 INFO    SenderThread:73384 [sender.py:send_request_defer():608] handle sender defer: 0
+2023-08-12 08:32:22,193 INFO    SenderThread:73384 [sender.py:transition_state():612] send defer: 1
+2023-08-12 08:32:22,193 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: defer
+2023-08-12 08:32:22,193 INFO    HandlerThread:73384 [handler.py:handle_request_defer():170] handle defer: 1
+2023-08-12 08:32:22,193 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: defer
+2023-08-12 08:32:22,193 INFO    SenderThread:73384 [sender.py:send_request_defer():608] handle sender defer: 1
+2023-08-12 08:32:22,194 INFO    SenderThread:73384 [sender.py:transition_state():612] send defer: 2
+2023-08-12 08:32:22,194 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: defer
+2023-08-12 08:32:22,194 INFO    HandlerThread:73384 [handler.py:handle_request_defer():170] handle defer: 2
+2023-08-12 08:32:22,194 INFO    HandlerThread:73384 [system_monitor.py:finish():190] Stopping system monitor
+2023-08-12 08:32:22,195 DEBUG   SystemMonitor:73384 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-08-12 08:32:22,195 DEBUG   SystemMonitor:73384 [system_monitor.py:_start():166] Finished system metrics aggregation loop
+2023-08-12 08:32:22,195 DEBUG   SystemMonitor:73384 [system_monitor.py:_start():170] Publishing last batch of metrics
+2023-08-12 08:32:22,199 INFO    HandlerThread:73384 [interfaces.py:finish():202] Joined cpu monitor
+2023-08-12 08:32:22,199 INFO    HandlerThread:73384 [interfaces.py:finish():202] Joined disk monitor
+2023-08-12 08:32:22,199 INFO    HandlerThread:73384 [interfaces.py:finish():202] Joined gpuapple monitor
+2023-08-12 08:32:22,200 INFO    HandlerThread:73384 [interfaces.py:finish():202] Joined memory monitor
+2023-08-12 08:32:22,200 INFO    HandlerThread:73384 [interfaces.py:finish():202] Joined network monitor
+2023-08-12 08:32:22,201 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: defer
+2023-08-12 08:32:22,201 INFO    SenderThread:73384 [sender.py:send_request_defer():608] handle sender defer: 2
+2023-08-12 08:32:22,201 INFO    SenderThread:73384 [sender.py:transition_state():612] send defer: 3
+2023-08-12 08:32:22,202 DEBUG   SenderThread:73384 [sender.py:send():379] send: stats
+2023-08-12 08:32:22,202 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: defer
+2023-08-12 08:32:22,202 INFO    HandlerThread:73384 [handler.py:handle_request_defer():170] handle defer: 3
+2023-08-12 08:32:22,202 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: defer
+2023-08-12 08:32:22,202 INFO    SenderThread:73384 [sender.py:send_request_defer():608] handle sender defer: 3
+2023-08-12 08:32:22,203 INFO    SenderThread:73384 [sender.py:transition_state():612] send defer: 4
+2023-08-12 08:32:22,203 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: defer
+2023-08-12 08:32:22,203 INFO    HandlerThread:73384 [handler.py:handle_request_defer():170] handle defer: 4
+2023-08-12 08:32:22,203 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: defer
+2023-08-12 08:32:22,203 INFO    SenderThread:73384 [sender.py:send_request_defer():608] handle sender defer: 4
+2023-08-12 08:32:22,203 INFO    SenderThread:73384 [sender.py:transition_state():612] send defer: 5
+2023-08-12 08:32:22,203 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: defer
+2023-08-12 08:32:22,203 INFO    HandlerThread:73384 [handler.py:handle_request_defer():170] handle defer: 5
+2023-08-12 08:32:22,204 DEBUG   SenderThread:73384 [sender.py:send():379] send: summary
+2023-08-12 08:32:22,205 INFO    SenderThread:73384 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-12 08:32:22,205 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: defer
+2023-08-12 08:32:22,205 INFO    SenderThread:73384 [sender.py:send_request_defer():608] handle sender defer: 5
+2023-08-12 08:32:22,206 INFO    SenderThread:73384 [sender.py:transition_state():612] send defer: 6
+2023-08-12 08:32:22,206 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: defer
+2023-08-12 08:32:22,206 INFO    HandlerThread:73384 [handler.py:handle_request_defer():170] handle defer: 6
+2023-08-12 08:32:22,206 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: defer
+2023-08-12 08:32:22,206 INFO    SenderThread:73384 [sender.py:send_request_defer():608] handle sender defer: 6
+2023-08-12 08:32:22,209 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: status_report
+2023-08-12 08:32:22,367 INFO    SenderThread:73384 [sender.py:transition_state():612] send defer: 7
+2023-08-12 08:32:22,368 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: defer
+2023-08-12 08:32:22,368 INFO    HandlerThread:73384 [handler.py:handle_request_defer():170] handle defer: 7
+2023-08-12 08:32:22,368 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: defer
+2023-08-12 08:32:22,368 INFO    SenderThread:73384 [sender.py:send_request_defer():608] handle sender defer: 7
+2023-08-12 08:32:22,368 INFO    SenderThread:73384 [sender.py:transition_state():612] send defer: 8
+2023-08-12 08:32:22,369 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: defer
+2023-08-12 08:32:22,369 INFO    HandlerThread:73384 [handler.py:handle_request_defer():170] handle defer: 8
+2023-08-12 08:32:22,369 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: defer
+2023-08-12 08:32:22,369 INFO    SenderThread:73384 [sender.py:send_request_defer():608] handle sender defer: 8
+2023-08-12 08:32:22,369 INFO    SenderThread:73384 [job_builder.py:build():281] Attempting to build job artifact
+2023-08-12 08:32:22,370 INFO    SenderThread:73384 [job_builder.py:build():297] run is notebook based run
+2023-08-12 08:32:22,371 INFO    SenderThread:73384 [job_builder.py:_get_source_type():400] is repo sourced job
+2023-08-12 08:32:22,371 INFO    SenderThread:73384 [sender.py:transition_state():612] send defer: 9
+2023-08-12 08:32:22,371 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: defer
+2023-08-12 08:32:22,371 INFO    HandlerThread:73384 [handler.py:handle_request_defer():170] handle defer: 9
+2023-08-12 08:32:22,371 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: defer
+2023-08-12 08:32:22,372 INFO    SenderThread:73384 [sender.py:send_request_defer():608] handle sender defer: 9
+2023-08-12 08:32:22,372 INFO    SenderThread:73384 [dir_watcher.py:finish():358] shutting down directory watcher
+2023-08-12 08:32:23,115 INFO    SenderThread:73384 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/config.yaml
+2023-08-12 08:32:23,117 INFO    SenderThread:73384 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/wandb-summary.json
+2023-08-12 08:32:23,117 INFO    SenderThread:73384 [dir_watcher.py:finish():388] scan: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files
+2023-08-12 08:32:23,118 INFO    SenderThread:73384 [dir_watcher.py:finish():402] scan save: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/requirements.txt requirements.txt
+2023-08-12 08:32:23,118 INFO    SenderThread:73384 [dir_watcher.py:finish():402] scan save: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/config.yaml config.yaml
+2023-08-12 08:32:23,122 INFO    SenderThread:73384 [dir_watcher.py:finish():402] scan save: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/wandb-summary.json wandb-summary.json
+2023-08-12 08:32:23,128 INFO    SenderThread:73384 [dir_watcher.py:finish():402] scan save: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/conda-environment.yaml conda-environment.yaml
+2023-08-12 08:32:23,129 INFO    SenderThread:73384 [dir_watcher.py:finish():402] scan save: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/wandb-metadata.json wandb-metadata.json
+2023-08-12 08:32:23,134 INFO    SenderThread:73384 [dir_watcher.py:finish():402] scan save: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/media/table/session_analysis_0_82a36b1234638de06bed.table.json media/table/session_analysis_0_82a36b1234638de06bed.table.json
+2023-08-12 08:32:23,135 INFO    SenderThread:73384 [dir_watcher.py:finish():402] scan save: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/media/table/action_records_0_84d6f6a0379743bee320.table.json media/table/action_records_0_84d6f6a0379743bee320.table.json
+2023-08-12 08:32:23,135 INFO    SenderThread:73384 [sender.py:transition_state():612] send defer: 10
+2023-08-12 08:32:23,135 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: defer
+2023-08-12 08:32:23,135 INFO    HandlerThread:73384 [handler.py:handle_request_defer():170] handle defer: 10
+2023-08-12 08:32:23,135 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: defer
+2023-08-12 08:32:23,135 INFO    SenderThread:73384 [sender.py:send_request_defer():608] handle sender defer: 10
+2023-08-12 08:32:23,135 INFO    SenderThread:73384 [file_pusher.py:finish():159] shutting down file pusher
+2023-08-12 08:32:23,501 INFO    wandb-upload_8:73384 [upload_job.py:push():131] Uploaded file /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/config.yaml
+2023-08-12 08:32:23,521 INFO    wandb-upload_7:73384 [upload_job.py:push():131] Uploaded file /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/requirements.txt
+2023-08-12 08:32:23,578 INFO    wandb-upload_35:73384 [upload_job.py:push():131] Uploaded file /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/files/wandb-summary.json
+2023-08-12 08:32:23,782 INFO    Thread-56 :73384 [sender.py:transition_state():612] send defer: 11
+2023-08-12 08:32:23,784 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: defer
+2023-08-12 08:32:23,784 INFO    HandlerThread:73384 [handler.py:handle_request_defer():170] handle defer: 11
+2023-08-12 08:32:23,785 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: defer
+2023-08-12 08:32:23,785 INFO    SenderThread:73384 [sender.py:send_request_defer():608] handle sender defer: 11
+2023-08-12 08:32:23,785 INFO    SenderThread:73384 [file_pusher.py:join():164] waiting for file pusher
+2023-08-12 08:32:23,786 INFO    SenderThread:73384 [sender.py:transition_state():612] send defer: 12
+2023-08-12 08:32:23,786 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: defer
+2023-08-12 08:32:23,786 INFO    HandlerThread:73384 [handler.py:handle_request_defer():170] handle defer: 12
+2023-08-12 08:32:23,787 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: defer
+2023-08-12 08:32:23,787 INFO    SenderThread:73384 [sender.py:send_request_defer():608] handle sender defer: 12
+2023-08-12 08:32:23,787 INFO    SenderThread:73384 [file_stream.py:finish():593] file stream finish called
+2023-08-12 08:32:24,292 INFO    SenderThread:73384 [file_stream.py:finish():597] file stream finish is done
+2023-08-12 08:32:24,292 INFO    SenderThread:73384 [sender.py:transition_state():612] send defer: 13
+2023-08-12 08:32:24,293 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: defer
+2023-08-12 08:32:24,293 INFO    HandlerThread:73384 [handler.py:handle_request_defer():170] handle defer: 13
+2023-08-12 08:32:24,293 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: defer
+2023-08-12 08:32:24,293 INFO    SenderThread:73384 [sender.py:send_request_defer():608] handle sender defer: 13
+2023-08-12 08:32:24,294 INFO    SenderThread:73384 [sender.py:transition_state():612] send defer: 14
+2023-08-12 08:32:24,294 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: defer
+2023-08-12 08:32:24,297 INFO    HandlerThread:73384 [handler.py:handle_request_defer():170] handle defer: 14
+2023-08-12 08:32:24,295 DEBUG   SenderThread:73384 [sender.py:send():379] send: final
+2023-08-12 08:32:24,298 DEBUG   SenderThread:73384 [sender.py:send():379] send: footer
+2023-08-12 08:32:24,299 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: defer
+2023-08-12 08:32:24,299 INFO    SenderThread:73384 [sender.py:send_request_defer():608] handle sender defer: 14
+2023-08-12 08:32:24,302 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: poll_exit
+2023-08-12 08:32:24,303 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: server_info
+2023-08-12 08:32:24,304 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: get_summary
+2023-08-12 08:32:24,304 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: poll_exit
+2023-08-12 08:32:24,306 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: sampled_history
+2023-08-12 08:32:24,307 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: server_info
+2023-08-12 08:32:24,309 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: job_info
+2023-08-12 08:32:24,443 DEBUG   SenderThread:73384 [sender.py:send_request():406] send_request: job_info
+2023-08-12 08:32:24,449 DEBUG   HandlerThread:73384 [handler.py:handle_request():144] handle_request: shutdown
+2023-08-12 08:32:24,450 INFO    HandlerThread:73384 [handler.py:finish():857] shutting down handler
+2023-08-12 08:32:25,320 INFO    WriterThread:73384 [datastore.py:close():294] close: /Users/alejandrobonell/ds-Alerts/notebooks/wandb/run-20230812_082950-cppf0vtv/run-cppf0vtv.wandb
+2023-08-12 08:32:25,447 INFO    SenderThread:73384 [sender.py:finish():1552] shutting down sender
+2023-08-12 08:32:25,447 INFO    SenderThread:73384 [file_pusher.py:finish():159] shutting down file pusher
+2023-08-12 08:32:25,447 INFO    SenderThread:73384 [file_pusher.py:join():164] waiting for file pusher
