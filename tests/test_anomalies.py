@@ -1,17 +1,16 @@
-
 import unittest
 import numpy as np
 import pandas as pd
 
 import sys
 
-sys.path.append('/Users/alejandrobonell/ds-Alerts')
+sys.path.append("/Users/alejandrobonell/ds-Alerts")
 
-from src.time_series import timeSeries
-from src.anomaly import algorithmAnomalyTimeSeries
+from src.ds_alerts.time_series import timeSeries
+from src.ds_alerts.anomaly import algorithmAnomalyTimeSeries
+
 
 class TestTimeSeries(unittest.TestCase):
-
     def setUp(self):
         # Sample data for testing
         self.dates = pd.date_range("20210101", periods=5)
@@ -42,9 +41,7 @@ class TestTimeSeries(unittest.TestCase):
         self.assertIsNotNone(self.ts.upper_bound)
 
 
-
 class TestAlgorithmAnomalyTimeSeries(unittest.TestCase):
-
     def setUp(self):
         # Sample data for testing
         self.dates = pd.date_range("20210101", periods=5)
@@ -61,8 +58,8 @@ class TestAlgorithmAnomalyTimeSeries(unittest.TestCase):
     def test_detect_alerts(self):
         result = self.algo.detect_alerts(self.ts)
         # Check if the third data point is detected as an anomaly
-        self.assertEqual(result['alerts_idx'][0], 2)
-        self.assertEqual(result['alerts'][2], 50)
+        self.assertEqual(result["alerts_idx"][0], 2)
+        self.assertEqual(result["alerts"][2], 50)
 
 
-print('all tests passed')
+print("all tests passed")
