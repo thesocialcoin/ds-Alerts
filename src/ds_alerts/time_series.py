@@ -1,26 +1,10 @@
-import sys
-import os
-import pandas as pd
-from typing import List
-
-# import math
-
-# import numpy as np
-# from statsmodels.tsa.seasonal import seasonal_decompose
-
-# from src.conf import (WINDOW_SIZE)
-# import matplotlib.pyplot as plt
-# import seaborn as sns
-
-sys.path.append(os.getcwd())
-
 # ####################### Code Implemented by Alejandro Bonell ########################
 # Inspired by: Anomaly detection in univariate time series incorporating active learning
 # Link: https://www.sciencedirect.com/science/article/pii/S2772415822000323
-# Version 0.1
 
+from typing import List
 
-# ########################### TimeSeries ############################
+import pandas as pd
 
 
 class timeSeries:

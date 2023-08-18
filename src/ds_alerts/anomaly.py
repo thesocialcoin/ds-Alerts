@@ -1,12 +1,14 @@
+# ####################### Code Implemented by Alejandro Bonell ########################
+# Inspired by: Anomaly detection in univariate time series incorporating active learning
+# Link: https://www.sciencedirect.com/science/article/pii/S2772415822000323
+
 import math
-import pandas as pd
 import copy
+
+import pandas as pd
 import numpy as np
-import sys
 
 from .time_series import timeSeries
-
-sys.path.append("/Users/alejandrobonell/ds-Alerts")
 
 
 class algorithmAnomalyTimeSeries:
