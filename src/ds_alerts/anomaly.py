@@ -8,13 +8,12 @@ import copy
 import pandas as pd
 import numpy as np
 
-from .time_series import timeSeries
+from .time_series import TimeSeries
 
 
-class algorithmAnomalyTimeSeries:
+class AnomalyDetector:
     """
-    A subclass of Time Series more focused on the anomaly properties
-    of the time series
+    A class associated to the TimeSeries class more focused on the anomaly properties of it
     """
 
     WINDOW_SIZE = 30
@@ -32,7 +31,7 @@ class algorithmAnomalyTimeSeries:
         self.multiplier = multiplier
         self.window = window
 
-    def detect_alerts(self, time_series: timeSeries):
+    def detect_alerts(self, time_series: TimeSeries):
         """
         Method to detect the alerts of the whole time series!
         """
@@ -40,11 +39,11 @@ class algorithmAnomalyTimeSeries:
         modified_time_series = copy.deepcopy(time_series)
         alerts_idx = []
         alerts = pd.Series(
-            [np.nan] * len(time_series.time_series), index=time_series.time_series.index
+            [np.nan] * len(time_series.data), index=time_series.data.index
         )
-        threshold = max(self.threshold, time_series.time_series.median())
+        threshold = max(self.threshold, time_series.data.median())
 
-        for i in range(len(modified_time_series.time_series)):
+        for i in range(len(modified_time_series.data)):
             # FIRST PART: Compute the upper bound & lower bound
             modified_time_series.compute_trend(self.window)
             modified_time_series.compute_std(self.window)
@@ -62,22 +61,22 @@ class algorithmAnomalyTimeSeries:
 
             # SECOND PART: Detect the alert
             if (
-                modified_time_series.time_series[i] > upper_bound[i]
-                and modified_time_series.time_series[i] > threshold
+                modified_time_series.data[i] > upper_bound[i]
+                and modified_time_series.data[i] > threshold
             ):
                 # THIRD PART: Store the alert
                 alerts_idx.append(i)
-                alerts[i] = time_series.time_series[i]
+                alerts[i] = time_series.data[i]
 
                 # FOURTH PART a): UPDATE the time series
-                modified_time_series.time_series[i] = modified_time_series.time_series[
-                    i
-                ] - self.a * (modified_time_series.time_series[i] - upper_bound[i])
+                modified_time_series.data[i] = modified_time_series.data[i] - self.a * (
+                    modified_time_series.data[i] - upper_bound[i]
+                )
 
-            if modified_time_series.time_series[i] < lower_bound[i]:
+            if modified_time_series.data[i] < lower_bound[i]:
                 # FOURTH PART b) : UPDATE the time series
-                modified_time_series.time_series[i] = modified_time_series.time_series[
-                    i
-                ] + self.a * (lower_bound[i] - modified_time_series.time_series[i])
+                modified_time_series.data[i] = modified_time_series.data[i] + self.a * (
+                    lower_bound[i] - modified_time_series.data[i]
+                )
 
         return alerts
