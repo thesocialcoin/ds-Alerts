@@ -29,9 +29,6 @@ class timeSeries:
     Time series
     """
 
-    WINDOW_SIZE_STD = 20
-    WINDOW_SIZE_MEAN = 20
-
     def __init__(self, ts: List[int], dates: List[str]):
         """
         Initializes the TS with raw time data values and its corresponding dates

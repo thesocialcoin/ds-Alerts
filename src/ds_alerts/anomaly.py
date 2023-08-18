@@ -15,9 +15,11 @@ class algorithmAnomalyTimeSeries:
     of the time series
     """
 
+    WINDOW_SIZE = 30
+
     def __init__(
         self,
-        window: int,
+        window: int = WINDOW_SIZE,
         threshold: float = 10.0,
         a: float = 0.5,
         multiplier: float = 1.96,
