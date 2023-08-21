@@ -50,3 +50,5 @@ class TimeSeries:
 
         self.lower_bound = self.trend - (multiplier * self.std)
         self.upper_bound = self.trend + (multiplier * self.std)
+
+        return {"lower_bound": self.lower_bound, "upper_bound": self.upper_bound}
