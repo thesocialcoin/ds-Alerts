@@ -2,7 +2,7 @@
 # Inspired by: Anomaly detection in univariate time series incorporating active learning
 # Link: https://www.sciencedirect.com/science/article/pii/S2772415822000323
 
-from typing import List
+from typing import Any, Dict, List
 
 import pandas as pd
 
@@ -18,19 +18,21 @@ class TimeSeries:
         """
         self.data = pd.Series(ts, index=dates)
 
-    def compute_trend(self, window: int):
+    def compute_trend(self, window: int) -> pd.Series:
         """
         Computes the trend of the time series
         """
         return self.data.rolling(window=window, closed="left").mean()
 
-    def compute_std(self, window: int):
+    def compute_std(self, window: int) -> pd.Series:
         """
         Computes the standard deviation of the time series
         """
         return self.data.rolling(window=window, closed="left").std()
 
-    def prediction_interval(self, window: int, multiplier: float = 1.96):
+    def prediction_interval(
+        self, window: int, multiplier: float = 1.96
+    ) -> Dict[str, List[Any]]:
         """
         Calculates the prediction intervals for the TS or the anomaly adjusted TS
         """
