@@ -28,14 +28,14 @@ class AnomalyDetector:
         self.multiplier = multiplier
         self.window = window
 
-    def detect_alerts(self, time_series: TimeSeries):
+    def detect_alerts(self, ts: TimeSeries):
         """
         Method to detect the alerts of the whole time series!
         """
 
-        mod_ts = copy.deepcopy(time_series)
+        mod_ts = copy.deepcopy(ts)
         alerts = []
-        threshold = max(self.threshold, time_series.data.median())
+        threshold = max(self.threshold, ts.data.median())
 
         # FIRST PART: Compute the upper bound & lower bound
         pred_interval = mod_ts.prediction_interval(self.window)
