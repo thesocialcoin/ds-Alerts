@@ -43,7 +43,7 @@ class AnomalyDetector:
         lower_bound = pred_interval["lower_bound"]
 
         for i, (index, value) in enumerate(
-            mod_ts.data[self.window :].iteritems(), self.window
+            mod_ts.data[self.window :].items(), self.window
         ):
             # SECOND PART: Detect the alert
             if value > upper_bound[i] and value > threshold:
