@@ -16,43 +16,40 @@ class TimeSeries:
         """
         Initializes the TS with raw time data values and its corresponding dates
         """
-
         self.data = pd.Series(ts, index=dates)
-
-        self.trend = None
-        self.std = None
-
-        self.lower_bound = None
-        self.upper_bound = None
 
     def compute_trend(self, window: int):
         """
         Computes the trend of the time series
         """
-        self.trend = self.data.rolling(window=window, closed="left").mean()
+        return self.data.rolling(window=window, closed="left").mean()
 
     def compute_std(self, window: int):
         """
         Computes the standard deviation of the time series
         """
-        self.std = self.data.rolling(window=window, closed="left").std()
+        return self.data.rolling(window=window, closed="left").std()
 
     def prediction_interval(self, window: int, multiplier: float = 1.96):
         """
         Calculates the prediction intervals for the TS or the anomaly adjusted TS
         """
+        trend = self.compute_trend(window)
+        std = self.compute_std(window)
 
-        if self.trend is None:
-            self.compute_trend(window)
+        lower_bound = []
+        upper_bound = []
 
-        if self.std is None:
-            self.compute_std(window)
+        for t, s in zip(trend, std):
+            lower_item = t - (multiplier * s)
+            lower_item = lower_item if lower_item > 0 else 0
+            lower_bound.append(lower_item)
 
-        self.lower_bound = self.trend - (multiplier * self.std)
-        self.upper_bound = self.trend + (multiplier * self.std)
+            upper_item = t + (multiplier * s)
+            upper_bound.append(upper_item)
 
         return {
             "dates": self.data.index.tolist(),
-            "lower_bound": self.lower_bound.tolist(),
-            "upper_bound": self.upper_bound.tolist(),
+            "lower_bound": lower_bound,
+            "upper_bound": upper_bound,
         }
