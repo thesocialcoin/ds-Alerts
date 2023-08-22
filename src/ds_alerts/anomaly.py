@@ -43,21 +43,15 @@ class AnomalyDetector:
         )
         threshold = max(self.threshold, time_series.data.median())
 
+        # FIRST PART: Compute the upper bound & lower bound
+        pred_interval = modified_time_series.prediction_interval(self.window)
+        upper_bound = pred_interval["upper_bound"]
+        lower_bound = pred_interval["lower_bound"]
+
         for i in range(len(modified_time_series.data)):
-            # FIRST PART: Compute the upper bound & lower bound
-            modified_time_series.compute_trend(self.window)
-            modified_time_series.compute_std(self.window)
-
             # Let's check the confidence intervals are available
-            if i == 0 or math.isnan(modified_time_series.trend[i]):
+            if i == 0 or math.isnan(upper_bound[i]):
                 continue
-
-            upper_bound = modified_time_series.trend + (
-                self.multiplier * modified_time_series.std
-            )
-            lower_bound = modified_time_series.trend - (
-                self.multiplier * modified_time_series.std
-            )
 
             # SECOND PART: Detect the alert
             if (
