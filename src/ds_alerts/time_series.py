@@ -17,7 +17,7 @@ class TimeSeries:
         Initializes the TS with raw time data values and its corresponding dates
         """
 
-        self.data = pd.Series(ts, index=pd.to_datetime(dates))
+        self.data = pd.Series(ts, index=dates)
 
         self.trend = None
         self.std = None
