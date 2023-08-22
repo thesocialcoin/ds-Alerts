@@ -28,7 +28,7 @@ class AnomalyDetector:
         self.multiplier = multiplier
         self.window = window
 
-    def detect_alerts(self, ts: TimeSeries):
+    def detect_alerts(self, ts: TimeSeries) -> List[Dict[str, int]]:
         """
         Method to detect the alerts of the whole time series!
         """
@@ -42,17 +42,19 @@ class AnomalyDetector:
         upper_bound = pred_interval["upper_bound"]
         lower_bound = pred_interval["lower_bound"]
 
-        for i, item in enumerate(mod_ts.data[self.window :], self.window):
+        for i, (index, value) in enumerate(
+            mod_ts.data[self.window :].iteritems(), self.window
+        ):
             # SECOND PART: Detect the alert
-            if item > upper_bound[i] and item > threshold:
+            if value > upper_bound[i] and value > threshold:
                 # THIRD PART: Store the alert
-                alerts.append({item.index: item})
+                alerts.append({index: value})
 
                 # FOURTH PART a): UPDATE the time series
-                item = item - self.a * (item - upper_bound[i])
+                value = value - self.a * (value - upper_bound[i])
 
-            if item < lower_bound[i]:
+            if value < lower_bound[i]:
                 # FOURTH PART b) : UPDATE the time series
-                item = item + self.a * (lower_bound[i] - item)
+                value = value + self.a * (lower_bound[i] - value)
 
         return alerts
