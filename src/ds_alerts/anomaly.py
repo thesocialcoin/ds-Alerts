@@ -48,7 +48,7 @@ class AnomalyDetector:
             # SECOND PART: Detect the alert
             if value > upper_bound[i] and value > threshold:
                 # THIRD PART: Store the alert
-                alerts.append({index: value})
+                alerts.append({"date": index, "volume": value})
 
                 # FOURTH PART a): UPDATE the time series
                 value = value - self.a * (value - upper_bound[i])
