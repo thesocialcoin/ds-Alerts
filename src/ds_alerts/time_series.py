@@ -48,10 +48,10 @@ class TimeSeries:
 
             # Modify original values
             if value > upper_bound and value > limit:
-                value = value - a * (value - upper_bound)
+                mod_val[i] = value - a * (value - upper_bound)
 
             elif value < lower_bound:
-                value = value + a * (lower_bound - value)
+                mod_val[i] = value + a * (lower_bound - value)
 
             # Add bounds to calculation
             prediction_interval["dates"].append(date)
