@@ -21,7 +21,7 @@ class TimeSeries:
         self,
         a: float = 0.5,
         multiplier: float = 1.96,
-        threshold: float = 0.0,
+        threshold: float = 10.0,
         window: int = WINDOW,
     ) -> Dict[str, Any]:
         # Initial before window values
@@ -32,19 +32,22 @@ class TimeSeries:
         }
 
         # Original copies from window for calculation
-        mod_val = self.values[window:]
-        mod_dt = self.dates[window:]
+        mod_val = self.values
 
-        for i, (value, date) in enumerate(zip(mod_val, mod_dt), window):
+        for i, (value, date) in enumerate(
+            zip(mod_val[window:], self.dates[window:]), window
+        ):
             # Calculate statistic values for this window
-            mean = self._mean(self.values[i - window : i])
-            median = self._median(self.values[i - window : i])
-            std = self._std(self.values[i - window : i])
+            mean = self._mean(mod_val[i - window : i])
+            median = self._median(mod_val[i - window : i])
+            std = self._std(mod_val[i - window : i])
 
             # Calculate bounds
             limit = max(threshold, median)
             upper_bound = mean + (multiplier * std)
             lower_bound = mean - (multiplier * std)
+            if lower_bound and lower_bound < 0:
+                lower_bound = 0.0
 
             # Modify original values
             if value > upper_bound and value > limit:
