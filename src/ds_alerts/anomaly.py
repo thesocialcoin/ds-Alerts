@@ -4,11 +4,7 @@
 # https://www.sciencedirect.com/science/article/pii/S2772415822000323
 
 from typing import Dict, List
-import sys
-import os
-from os import listdir
-from os.path import join
-from ds_alerts.time_series import TimeSeries
+from .time_series import TimeSeries
 
 class AnomalyDetector:
     """
