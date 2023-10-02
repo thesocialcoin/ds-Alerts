@@ -11,6 +11,10 @@ class TimeSeries:
     Class to represent a time series and to calculate some typical properties of it
     """
 
+    # Algorithm hiperparameters
+    A = 0.5
+    MULTIPLIER = 1.96
+    THRESHOLD = 10.0
     WINDOW = 30
 
     def __init__(self, values: List[int], dates: List[str]):
@@ -19,9 +23,9 @@ class TimeSeries:
 
     def prediction_interval(
         self,
-        a: float = 0.5,
-        multiplier: float = 1.96,
-        threshold: float = 10.0,
+        a: float = A,
+        multiplier: float = MULTIPLIER,
+        threshold: float = THRESHOLD,
         window: int = WINDOW,
     ) -> Dict[str, Any]:
         # Initial before window values
@@ -32,7 +36,7 @@ class TimeSeries:
         }
 
         # Original copies from window for calculation
-        mod_val = self.values
+        mod_val = [*self.values]
 
         for i, (value, date) in enumerate(
             zip(mod_val[window:], self.dates[window:]), window
