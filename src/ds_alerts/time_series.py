@@ -12,8 +12,7 @@ class TimeSeries:
     """
 
     # Algorithm hiperparameters
-    A = 0.5
-    MULTIPLIER = 1.96
+    MULTIPLIER = 1.625
     THRESHOLD = 10.0
     WINDOW = 30
 
@@ -23,7 +22,6 @@ class TimeSeries:
 
     def prediction_interval(
         self,
-        a: float = A,
         multiplier: float = MULTIPLIER,
         threshold: float = THRESHOLD,
         window: int = WINDOW,
@@ -36,29 +34,20 @@ class TimeSeries:
         }
 
         # Original copies from window for calculation
-        mod_val = [*self.values]
 
         for i, (value, date) in enumerate(
-            zip(mod_val[window:], self.dates[window:]), window
+            zip(self.values[window:], self.dates[window:]), window
         ):
             # Calculate statistic values for this window
-            mean = self._mean(mod_val[i - window : i])
-            median = self._median(mod_val[i - window : i])
-            std = self._std(mod_val[i - window : i])
+            median = self._median(self.values[i - window : i])
+            mad = self._mad(self.values[i - window : i])
 
             # Calculate bounds
-            limit = max(threshold, median)
-            upper_bound = mean + (multiplier * std)
-            lower_bound = mean - (multiplier * std)
+            upper_bound = median + (multiplier * 1.4826 * mad)
+            lower_bound = median - (multiplier * 1.4826 * mad)
+            
             if lower_bound and lower_bound < 0:
                 lower_bound = 0.0
-
-            # Modify original values
-            if value > upper_bound and value > limit:
-                mod_val[i] = value - a * (value - upper_bound)
-
-            elif value < lower_bound:
-                mod_val[i] = value + a * (lower_bound - value)
 
             # Add bounds to calculation
             prediction_interval["dates"].append(date)
@@ -85,3 +74,7 @@ class TimeSeries:
     def _std(self, values: List[int]) -> float:
         mean = self._mean(values)
         return (sum([((x - mean) ** 2) for x in values]) / len(values)) ** 0.5
+
+    def _mad(self, values: List[int]) -> float:
+        median = self._median(values)
+        return self._median([abs(x - median) for x in values])
