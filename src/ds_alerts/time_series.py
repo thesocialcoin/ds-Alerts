@@ -71,14 +71,16 @@ class TimeSeries:
         return sum(values) / len(values)
 
     def _median(self, values: List[int]) -> float:
-        if len(values) % 2:
-            # case odd length
-            return values[int(len(values) / 2)]
-        else:
+        length = len(values)
+        ordered_values = sorted(values)
+        if length % 2:
             # case even length
-            lower = values[int(len(values) / 2) - 1]
-            higher = values[int(len(values) / 2)]
+            lower = ordered_values[int(length / 2) - 1]
+            higher = ordered_values[int(length / 2)]
             return (higher + lower) / 2
+        else:
+            # case odd length
+            return ordered_values[int(length / 2)]
 
     def _std(self, values: List[int]) -> float:
         mean = self._mean(values)
