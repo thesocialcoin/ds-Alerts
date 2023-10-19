@@ -12,7 +12,6 @@ class TimeSeries:
     """
 
     # Algorithm hiperparameters
-    A = 0.5
     MULTIPLIER = 1.625
     THRESHOLD = 10.0
     WINDOW = 30
@@ -23,7 +22,6 @@ class TimeSeries:
 
     def prediction_interval(
         self,
-        a: float = A,
         multiplier: float = MULTIPLIER,
         threshold: float = THRESHOLD,
         window: int = WINDOW,
