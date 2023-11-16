@@ -6,8 +6,8 @@ import sys
 
 sys.path.append("/Users/alejandrobonell/ds-Alerts")
 
-from src.ds_alerts.time_series import timeSeries
-from src.ds_alerts.anomaly import algorithmAnomalyTimeSeries
+from src.alerts.time_series import timeSeries
+from src.alerts.anomaly import algorithmAnomalyTimeSeries
 
 
 class TestTimeSeries(unittest.TestCase):

@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "ds-Alerts"
+name = "alerts"
 version = "0.0.0"
 description = ""
 authors = ["Alejandro Bonell <abonell@citibeats.com>"]
 readme = "README.md"
-packages = [{include = "ds_alerts", from = "src"}]
+packages = [{include = "alerts", from = "src"}]
 
 [tool.poetry.dependencies]
-python = ">=3.8"
+python = ">=3.9"
 pandas = "^1.2.3"
 numpy = "^1.25.2"
 
