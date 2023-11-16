@@ -5,7 +5,7 @@
 
 from typing import Dict, List
 
-from ds_alerts.time_series import TimeSeries
+from alerts.time_series import TimeSeries
 
 
 class AnomalyDetector:
