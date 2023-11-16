@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "ds_alerts", from = "src"}]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.8"
 pandas = "^1.2.3"
 numpy = "^1.25.2"
 
