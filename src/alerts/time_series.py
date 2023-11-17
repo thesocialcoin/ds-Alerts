@@ -3,9 +3,11 @@
 # active learning.
 # https://www.sciencedirect.com/science/article/pii/S2772415822000323
 
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Tuple, Optional
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
+from alerts.anomaly import AnomalyDetector
 
 
 class AnomalyTS():
@@ -26,81 +28,178 @@ class AnomalyTS():
         """
 
         self.dates, self.values = zip(*T)
+        self.dates = list(self.dates)
+        self.values = list(self.values)
+
         self.window = (
             parameters['window'] if 'window' in parameters else self.WINDOW
         )
 
+        self.static_metric = (
+            parameters['static_metric']
+            if 'static_metric' in parameters else 'mean'
+        )
+
+        self.transf = parameters['transf'] if 'transf' in parameters else None
+
+        assert self.static_metric in ['mean', 'median']
+        assert self.transf is None or self.transf == 'sqrt'
+
     def normalize_time_series(self) -> List[Tuple[Any, int]]:
-        normalized_values = self._flatten_transform(self.values)
+        normalized_values = self._flatten_transform_sqrt(self.values)
         return list(zip(self.dates, normalized_values))
 
-    def _flatten_transform(self, values: List[int]) -> List[int]:
+    def _flatten_transform_sqrt(self, values: List[int]) -> List[int]:
         np_values = np.array(values)
         flatten_values = np.sqrt(np_values)
         return flatten_values
 
-    def _inverse_transform(self, values: List[int]) -> List[int]:
+    def _inverse_transform_sqrt(self, values: List[int]) -> List[int]:
         np_values = np.array(values)
         inverse_values = np.square(np_values)
         return inverse_values
 
+    def _compute_metrics(
+            self, pre_window_values: List[Any],
+            static_metric: str,
+            transf: Optional[str] = None) -> Dict[str, Any]:
+
+        assert static_metric in ['mean', 'median']
+        assert self.transf is None or self.transf == 'sqrt'
+
+        values = pre_window_values.copy()
+
+        if transf and transf == 'sqrt':
+            values = self._flatten_transform_sqrt(values)
+            f = self._flatten_transform_sqrt
+        else:
+            f = lambda x :  x
+
+        values = np.array(values)
+
+        if static_metric == 'mean':
+            mean_value = np.mean(values)
+            std_value = np.std(values)
+
+            lower_bound = mean_value - self.QUANTILE * std_value
+            upper_bound = mean_value + self.QUANTILE * std_value
+        else:
+            median = self._median(values)
+            mad = self._mad(values)
+
+            # Calculate bounds
+            lower_bound = median - (self.QUANTILE * 1.4826 * mad)
+            upper_bound = median + (self.QUANTILE * 1.4826 * mad)
+
+        return {
+            'lower_bound': lower_bound,
+            'upper_bound': upper_bound,
+            'apply': f
+        }
+
+    def _mad(self, values: List[int]) -> float:
+        median = self._median(values)
+        return self._median([abs(x - median) for x in values])
+
+    def _median(self, values: List[int]) -> float:
+        length = len(values)
+        ordered_values = sorted(values)
+        if length % 2:
+            # case even length
+            lower = ordered_values[int(length / 2) - 1]
+            higher = ordered_values[int(length / 2)]
+            return (higher + lower) / 2
+        else:
+            # case odd length
+            return ordered_values[int(length / 2)]
+
     def prediction_interval(self) -> Dict[str, Any]:
+
+        def transform_value(value):
+            if self.transf and self.transf == 'sqrt':
+                value = self._flatten_transform_sqrt([value])[0]
+            return value
+
         prediction_interval = {
             "dates": [date for date in self.dates[:self.window]],
-            "values": [value for value in self.values[:self.window]],
-            "lb": [None for _ in self.dates[:self.window]],
-            "ub": [None for _ in self.dates[:self.window]],
-            "flatten_values": [
-                self._flatten_transform(value)
+            "values": [
+                transform_value(value)
                 for value in self.values[:self.window]
             ],
-            "flatten_lb": [None for _ in self.dates[:self.window]],
-            "flatten_ub": [None for _ in self.dates[:self.window]],
+            "lower_bound": [None for _ in self.dates[:self.window]],
+            "upper_bound": [None for _ in self.dates[:self.window]]
         }
 
         post_window_dates = self.dates[self.window:]
         post_window_values = self.values[self.window:]
-        targets = enumerate(zip(post_window_dates, post_window_values))
+        targets = zip(post_window_dates, post_window_values)
 
-        for i, (date, value) in targets:
+        for i, (date, value) in enumerate(targets):
             # Calculate statistic values for this window
 
             pre_window_values = self.values[i: self.window + i]
-            flatten_pre_window_values = self. \
-                _flatten_transform(pre_window_values)
 
-            flatten_value = self._flatten_transform([value])[0]
-            flatten_mean_value = np.mean(flatten_pre_window_values)
-            flatten_std_value = np.std(flatten_pre_window_values)
+            metrics = self._compute_metrics(
+                pre_window_values,
+                self.static_metric,
+                self.transf
+            )
+            lower_bound = metrics['lower_bound']
+            upper_bound = metrics['upper_bound']
+            apply = metrics['apply']
 
-            mean_value = np.mean(pre_window_values)
-            std_value = np.std(pre_window_values)
+            if lower_bound and lower_bound < 0:
+                lower_bound = 0.0
 
-            flatten_lb = flatten_mean_value - self.QUANTILE * flatten_std_value
-            flatten_ub = flatten_mean_value + self.QUANTILE * flatten_std_value
+            value = apply([value])[0]
 
-            lb = mean_value - self.QUANTILE * std_value
-            ub = mean_value + self.QUANTILE * std_value
-
-            if lb and lb < 0:
-                lb = 0.0
-
-            if flatten_lb and flatten_lb < 0:
-                flatten_lb = 0.0
-
-            prediction_interval["dates"].append(date)
+            prediction_interval["lower_bound"].append(lower_bound)
+            prediction_interval["upper_bound"].append(upper_bound)
             prediction_interval["values"].append(value)
-            prediction_interval["lb"].append(lb)
-            prediction_interval["ub"].append(ub)
-            prediction_interval["flatten_values"].append(flatten_value)
-            prediction_interval["flatten_lb"].append(flatten_lb)
-            prediction_interval["flatten_ub"].append(flatten_ub)
+            prediction_interval["dates"].append(date)
 
         return prediction_interval
 
-    def plot(self) -> None:
-        plt.subplots(figsize=(12, 5))
-        plt.plot(self.dates, self.values)
+    def plot(self, show_anomalies=False) -> None:
+
+        plt.subplots(figsize=(12, 4))
+
+        pred_interval = pd.DataFrame(self.prediction_interval())
+        simplified_preds = pred_interval.copy()
+        # simplified_preds = pred_interval[~pred_interval['lower_bound'].isna()]
+
+        plt.plot(simplified_preds['dates'],
+                 simplified_preds['values'], label='value')
+
+        plt.plot(simplified_preds['dates'],
+                 simplified_preds['lower_bound'], label='lower_bound')
+
+        plt.plot(simplified_preds['dates'],
+                 simplified_preds['upper_bound'], label='upper_bound')
+
+        if show_anomalies:
+            detector = AnomalyDetector()
+            anomalies = detector.detect_alerts(self)
+
+            x = [anomalie['date'] for anomalie in anomalies]
+            y = [anomalie['volume'] for anomalie in anomalies]
+
+            plt.scatter(x, y,
+                        marker='o',
+                        alpha=0.5,
+                        color='red')
+
+        plt.xlabel("Days")
+        plt.ylabel("Magnitude")
+        plt.title(
+            "Static method: {} - Transformation: {} - Anomalies: {}"
+            .format(self.static_metric,
+                    self.transf,
+                    len(x) if show_anomalies else 0)
+        )
+
+        plt.legend()
+        plt.show()
 
 
 class TimeSeries:

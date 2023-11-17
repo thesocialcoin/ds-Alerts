@@ -3,9 +3,7 @@
 # active learning.
 # https://www.sciencedirect.com/science/article/pii/S2772415822000323
 
-from typing import Dict, List
-
-from alerts.time_series import TimeSeries
+from typing import Dict, List, Optional
 
 
 class AnomalyDetector:
@@ -13,7 +11,7 @@ class AnomalyDetector:
     Class focused on the anomaly properties of a TimeSeries
     """
 
-    def detect_alerts(self, ts: TimeSeries) -> List[Dict[str, int]]:
+    def detect_alerts(self, ts) -> List[Dict[str, int]]:
         """
         Method to detect the alerts of the whole time series!
         """
@@ -21,10 +19,12 @@ class AnomalyDetector:
 
         # Get prediction interval and the window of the TS
         pred_interval = ts.prediction_interval()
+        dates = pred_interval['dates']
+        values = pred_interval['values']
         window = ts.WINDOW
 
         for i, (date, value) in enumerate(
-            zip(ts.dates[window:], ts.values[window:]), window
+            zip(dates[window:], values[window:]), window
         ):
             # Detect and store the alert
             if value > pred_interval["upper_bound"][i]:
