@@ -8,24 +8,150 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from alerts.anomaly import AnomalyDetector
+from alerts.dataclasses import TimeSeries, PredictionInterval, Event, LimitInterval
+
+from abc import abstractmethod
+from abc import ABC
 
 
-class AnomalyTS():
+def identity(x: Any) -> Any:
+    return x
 
-    QUANTILE = 1.625
+
+class AnomalyTS(ABC):
+
+    @abstractmethod
+    def prediction_interval() -> List[PredictionInterval]:
+        pass
+
+    @abstractmethod
+    def plot(self) -> None:
+        pass
+
+
+class AnomalyMeanTS(AnomalyTS):
+
+    Z_SCORE = 1.625
     WINDOW = 30
 
     def __init__(self,
-                 T: List[Tuple[Any, int]],
-                 parameters: Dict[str, Any]):
-        """Time series anomaly
+                 ts: TimeSeries,
+                 z_score: float = Z_SCORE,
+                 window: int = WINDOW,
+                 flat_ts: bool = False):
+        self.z_score = z_score
+        self.window = window
+        self.flat_ts = flat_ts
+        self.ts = ts
 
-        Args:
-            T (List[Tuple[int, int]]): represents data point containing a
-        timestamp and an associating value.
-            parameters (Dict[str, Any]): set of hyper-parameters that help to
-                compute the prediction intervals.
+    def _init_prediction_interval(self) -> List[PredictionInterval]:
+        """Init the prediction intervals
+
+        Returns:
+            List[PredictionInterval]: The list contains
+                the events pre window frame
         """
+        prediction_interval = list()
+        for event in self.ts.events[:self.window]:
+            prediction_interval.append(
+                PredictionInterval(
+                    t=event.t,
+                    v=np.sqrt(event.v) if self.flat_ts else event.v,
+                    lb=None,
+                    ub=None
+                )
+            )
+        return prediction_interval
+
+    def _compute_limits(
+            self,
+            current_window_frame: List[Event]) -> LimitInterval:
+
+        values = [e.v for e in current_window_frame]
+        if self.flat_ts:
+            values = np.sqrt(self.ts.values)
+
+        mean_value = np.mean(values)
+        std_value = np.std(values)
+        lower_bound = mean_value - self.z_score * std_value
+        upper_bound = mean_value + self.z_score * std_value
+
+        limits = LimitInterval(
+            lb=lower_bound,
+            ub=upper_bound
+        )
+
+        return limits
+
+    def prediction_interval(self) -> List[PredictionInterval]:
+
+        prediction_interval = self._init_prediction_interval
+        future_events = self.ts.events[self.window:]
+
+        for i, (date, value) in enumerate(future_events):
+
+            current_window_frame = self.ts.events[i: self.window + i]
+
+            limits = self._compute_limits(current_window_frame)
+            lower_bound = 0 if limits.lower_bound < 0 else limits.upper_bound
+            upper_bound = limits.upper_bound
+
+            prediction_interval["lower_bound"].append(lower_bound)
+            prediction_interval["upper_bound"].append(upper_bound)
+            prediction_interval["values"].append(
+                np.sqrt(value) if self.flat_ts else value
+            )
+            prediction_interval["dates"].append(date)
+
+        return prediction_interval
+
+    def plot(self, show_anomalies=False) -> None:
+
+        plt.subplots(figsize=(12, 4))
+        prediction_interval = self.prediction_interval()
+
+        df = pd.DataFrame([p.__dict__ for p in prediction_interval])
+
+        plt.plot(df['time'], df['value'], label='value')
+        plt.plot(df['time'], df['lower_bound'], label='lower_bound')
+        plt.plot(df['time'], df['upper_bound'], label='upper_bound')
+
+        if show_anomalies:
+            detector = AnomalyDetector()
+            anomalies = detector.detect_alerts(self)
+
+            x = [anomalie['date'] for anomalie in anomalies]
+            y = [anomalie['volume'] for anomalie in anomalies]
+
+            plt.scatter(x, y,
+                        marker='o',
+                        alpha=0.5,
+                        color='red')
+
+        plt.xlabel("Days")
+        plt.ylabel("Magnitude")
+        plt.title(
+            "Static method: {} - Transformation: {} - Anomalies: {}"
+            .format(self.static_metric,
+                    self.transf,
+                    len(x) if show_anomalies else 0)
+        )
+
+        plt.legend()
+        plt.show()
+
+
+
+
+
+
+class AnomalyTS2():
+
+    Z_SCORE = 1.625
+    WINDOW = 30
+
+    def __init__(self, ):
+
 
         self.dates, self.values = zip(*T)
         self.dates = list(self.dates)
@@ -37,7 +163,7 @@ class AnomalyTS():
 
         self.quantile = (
             parameters['quantile']
-            if 'quantile' in parameters else self.QUANTILE
+            if 'quantile' in parameters else self.Z_SCORE
         )
 
         self.static_metric = (
@@ -207,7 +333,11 @@ class AnomalyTS():
         plt.show()
 
 
-class TimeSeries:
+
+
+
+
+class AnomalyMedianTS(AnomalyTS):
     """
     Class to represent a time series and to calculate some
     typical properties of it
