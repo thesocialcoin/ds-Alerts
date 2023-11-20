@@ -1,4 +1,4 @@
-# Anomaly Detection in Univariate Time Series Incorporating Time Series
+# Anomaly Detection in Univariate Time Series Incorporating Flatten Transformation
 
 ## Introduction
 
@@ -12,7 +12,7 @@ $$
 T = \langle d_1 = (t_1, v_1), d_2 = (t_2, v_2), \ldots, d_m = (t_m, v_m) \rangle
 $$
 
-where:
+Where:
 
 - $d_i$ represents data point
 - $t_i$ a timestamp
@@ -36,11 +36,11 @@ depending on the characteristics of the data and the goals of the analysis.
 
 2) **Reducing Sensitivity to Extreme Values**: The square root transformation can reduce the impact of extreme values (outliers) in the data. This can be beneficial when outliers have a disproportionate effect on the analysis.
 
-We define the algorithm $B$ as $B(F(T(\lambda)))$, i.e. $(B ∘ F ∘ T) \ \lambda$
+We define the algorithm $B$ as $B(F(T(\lambda)))$, i.e. $(B \cdot F \cdot T) \ \lambda$.
 
-where:
+Where:
 
-- $F$ = $\sqrt{v_i}$
+- $F = \sqrt{v_i}$
 
 Here we provide a result comparasion between the algorithm $A$ and $B$ on the dataset [Argentina Education](../data/Education_Argentina.csv).
 We can notice that the upper bound limiter is more smother and the jumps of the window prediction are reduced.
