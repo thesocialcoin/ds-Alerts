@@ -35,6 +35,11 @@ class AnomalyTS():
             parameters['window'] if 'window' in parameters else self.WINDOW
         )
 
+        self.quantile = (
+            parameters['quantile']
+            if 'quantile' in parameters else self.QUANTILE
+        )
+
         self.static_metric = (
             parameters['static_metric']
             if 'static_metric' in parameters else 'mean'
@@ -81,15 +86,15 @@ class AnomalyTS():
             mean_value = np.mean(values)
             std_value = np.std(values)
 
-            lower_bound = mean_value - self.QUANTILE * std_value
-            upper_bound = mean_value + self.QUANTILE * std_value
+            lower_bound = mean_value - self.quantile * std_value
+            upper_bound = mean_value + self.quantile * std_value
         else:
             median = self._median(values)
             mad = self._mad(values)
 
             # Calculate bounds
-            lower_bound = median - (self.QUANTILE * 1.4826 * mad)
-            upper_bound = median + (self.QUANTILE * 1.4826 * mad)
+            lower_bound = median - (self.quantile * 1.4826 * mad)
+            upper_bound = median + (self.quantile * 1.4826 * mad)
 
         return {
             'lower_bound': lower_bound,
