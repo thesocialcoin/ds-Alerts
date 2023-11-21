@@ -20,7 +20,7 @@ class PredictionInterval:
 
 @dataclass
 class Event:
-    def __init__(self, t, v):
+    def __init__(self, t, v: float):
         self.time = t
         self.value = v
 
