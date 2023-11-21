@@ -27,6 +27,5 @@ class Event:
 
 @dataclass
 class TimeSeries:
-
     def __init__(self, events: List[Event]):
         self.events = events
