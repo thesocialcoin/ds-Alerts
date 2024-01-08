@@ -14,21 +14,21 @@ def plot(ts: AnomalyTS,
 
     df = pd.DataFrame([p.__dict__ for p in intervals])
 
-    plt.plot(df['time'], df['value'], label='value')
-    plt.plot(df['time'], df['lower_bound'], label='lower_bound')
-    plt.plot(df['time'], df['upper_bound'], label='upper_bound')
+    plt.plot(df["date"], df["value"], label="value")
+    plt.plot(df["date"], df["lower_bound"], label="lower_bound")
+    plt.plot(df["date"], df["upper_bound"], label="upper_bound")
 
     if show_anomalies:
         detector = AnomalyDetector()
         events = detector.detect_alerts(ts)
 
-        x = [e.time for e in events]
+        x = [e.date for e in events]
         y = [e.value for e in events]
 
         plt.scatter(x, y,
-                    marker='o',
+                    marker="o",
                     alpha=0.5,
-                    color='red')
+                    color="red")
 
     plt.xlabel("Days")
     plt.ylabel("Magnitude")

@@ -21,7 +21,7 @@ class AnomalyDetector:
 
         # Get prediction interval and the window of the TS
         pred_interval = ts.prediction_interval()
-        dates = [e.time for e in pred_interval]
+        dates = [e.date for e in pred_interval]
         values = [e.value for e in pred_interval]
         upper_bound_limits = [e.upper_bound for e in pred_interval]
         window = ts.WINDOW
