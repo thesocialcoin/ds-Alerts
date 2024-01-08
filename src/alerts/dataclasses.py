@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List
+from typing import List, Any
 
 
 @dataclass
@@ -12,7 +12,7 @@ class LimitInterval:
 @dataclass
 class PredictionInterval:
     def __init__(self, t, v: float, lb: float, ub: float):
-        self.time = t
+        self.date = t
         self.value = v
         self.lower_bound = lb
         self.upper_bound = ub
@@ -21,11 +21,25 @@ class PredictionInterval:
 @dataclass
 class Event:
     def __init__(self, t, v: float):
-        self.time = t
+        self.date = t
         self.value = v
 
 
 @dataclass
 class TimeSeries:
-    def __init__(self, events: List[Event]):
+    def to_events(self, dates: List[Any], values: List[float]) -> List[Event]:
+        if len(dates) != len(values):
+            raise Exception(
+                (
+                    "To create a time series, "
+                    "bouth iterables must have the same lenght"
+                )
+            )
+
+        events = [Event(d, values[i]) for i, d in enumerate(dates)]
+
+        return events
+
+    def __init__(self, dates: List[Any], values: List[float]):
+        events = self.to_events(dates, values)
         self.events = events
