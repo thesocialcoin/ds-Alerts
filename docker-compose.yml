@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  ds-alerts:
+    image: ds-alerts
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ds-alerts
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/app
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+

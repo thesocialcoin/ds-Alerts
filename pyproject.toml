@@ -10,6 +10,7 @@ packages = [{include = "alerts", from = "src"}]
 python = ">=3.9"
 pandas = "^1.2.3"
 numpy = "^1.25.2"
+jupyter = "^1.0.0"
 
 [build-system]
 requires = ["poetry-core"]
