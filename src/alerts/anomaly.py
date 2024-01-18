@@ -6,6 +6,7 @@
 from typing import List
 from alerts.time_series import AnomalyTS
 from alerts.dataclasses import Event
+from datetime import timedelta
 
 
 class AnomalyDetector:
@@ -26,11 +27,44 @@ class AnomalyDetector:
         upper_bound_limits = [e.upper_bound for e in pred_interval]
         window = ts.WINDOW
 
-        for i, (date, value) in enumerate(
-            zip(dates[window:], values[window:]), window
-        ):
+        for i, (date, value) in enumerate(zip(dates[window:], values[window:]), window):
             # Detect and store the alert
             if value > upper_bound_limits[i]:
                 alerts.append(Event(date, value))
 
         return alerts
+
+    def detect_alerts_groups(
+        self, ts: AnomalyTS, time_proximity=timedelta(days=5)
+    ) -> List[List[Event]]:
+        alerts = self.detect_alerts(ts)
+        alerts_length = len(alerts)
+        groping_alerts = []
+        i = 0
+
+        while i < alerts_length:
+            start_anomaly = alerts[i]
+            anomaly = alerts[i]
+            group = [start_anomaly]
+            continues_anomalies = alerts[i + 1 :]
+
+            if len(continues_anomalies) == 0:
+                i += 1
+                pass
+
+            for next_anomaly in continues_anomalies:
+                time_difference = abs(
+                    (anomaly.date - next_anomaly.date)
+                    .astype("timedelta64[D]")
+                    .astype(int)
+                )
+                i += 1
+                if time_difference > time_proximity.days:
+                    break
+                else:
+                    anomaly = next_anomaly
+                    group.append(next_anomaly)
+
+            groping_alerts.append(group)
+
+        return groping_alerts
