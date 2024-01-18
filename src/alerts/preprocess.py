@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def data2timeSeries(data: pd.DataFrame) -> pd.DataFrame:
+def data2timeseries(data: pd.DataFrame) -> pd.DataFrame:
     """Compute the daily frequency of occurrences
         for each feature in the given DataFrame.
 
@@ -23,11 +23,18 @@ def data2timeSeries(data: pd.DataFrame) -> pd.DataFrame:
             daily count of occurrences for each feature.
     """
     assert "date" in data.columns
+    assert "text" in data.columns
 
     ts = data.copy()
-    ts.loc[:, "date"] = pd.to_datetime(data.loc[:, "date"])
+    ts["date"] = ts["date"].apply(pd.to_datetime)
     ts = ts.set_index("date") \
         .resample("D") \
         .count()
 
-    return ts
+    agg_ts = pd.DataFrame(columns=["date", "timestamp", "value"])
+    agg_ts["value"] = ts["text"].values
+    agg_ts["date"] = ts.index.values
+    agg_ts["timestamp"] = agg_ts["date"].astype(int)
+    agg_ts["timestamp"] = agg_ts["timestamp"].div(10**9)
+
+    return agg_ts

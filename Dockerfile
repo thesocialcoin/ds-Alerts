@@ -33,6 +33,7 @@ RUN chown -R ds:ds /app
 FROM builder as prod
 
 RUN pip install .
+RUN pip install .[dev]
 
 EXPOSE 8888
 

@@ -10,7 +10,12 @@ packages = [{include = "alerts", from = "src"}]
 python = ">=3.9"
 pandas = "^1.2.3"
 numpy = "^1.25.2"
+
+[tool.poetry.dev-dependencies]
 jupyter = "^1.0.0"
+openai = "0.25.0"
+tiktoken = "0.5.2"
+matplotlib = "^3.8.0"
 
 [build-system]
 requires = ["poetry-core"]
