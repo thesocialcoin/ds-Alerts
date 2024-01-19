@@ -4,10 +4,11 @@ from alerts.anomaly import AnomalyDetector
 from alerts.anomaly import AnomalyTS
 
 
-def plot(ts: AnomalyTS,
-         show_anomalies=False,
-         title: str = "Time series & prediction intervals") -> None:
-
+def plot(
+    ts: AnomalyTS,
+    show_anomalies=False,
+    title: str = "Time series & prediction intervals",
+) -> None:
     plt.subplots(figsize=(12, 4))
 
     intervals = ts.prediction_interval()
@@ -25,26 +26,21 @@ def plot(ts: AnomalyTS,
         x = [e.date for e in events]
         y = [e.value for e in events]
 
-        plt.scatter(x, y,
-                    marker="o",
-                    alpha=0.5,
-                    color="red")
+        plt.scatter(x, y, marker="o", alpha=0.5, color="red")
 
     plt.xlabel("Days")
     plt.ylabel("Magnitude")
-    plt.title(title + (
-        " - Anomalies {}".format(len(x))
-        if show_anomalies else ""
-    ))
+    plt.title(title + (" - Anomalies {}".format(len(x)) if show_anomalies else ""))
 
     plt.legend()
     plt.show()
 
 
-def plot_groups(ts: AnomalyTS,
-         show_anomalies=False,
-         title: str = "Time series & prediction intervals") -> None:
-
+def plot_groups(
+    ts: AnomalyTS,
+    show_anomalies=False,
+    title: str = "Time series & prediction intervals",
+) -> None:
     fig, ax = plt.subplots(figsize=(12, 4))
 
     intervals = ts.prediction_interval()
@@ -66,18 +62,20 @@ def plot_groups(ts: AnomalyTS,
             length = len(evs)
             end_idx = start_idx + length
 
-            ax.scatter(x[start_idx:end_idx], y[start_idx:end_idx],
-                       marker="o", alpha=0.5, color="red")
-            ax.axvspan(x[start_idx], x[end_idx-1], color='blue', alpha=0.2, lw=0)
+            ax.scatter(
+                x[start_idx:end_idx],
+                y[start_idx:end_idx],
+                marker="o",
+                alpha=0.5,
+                color="red",
+            )
+            ax.axvspan(x[start_idx], x[end_idx - 1], color="blue", alpha=0.2, lw=0)
 
             start_idx = end_idx
 
     ax.set_xlabel("Days")
     ax.set_ylabel("Magnitude")
-    ax.set_title(title + (
-        " - Anomalies {}".format(len(x))
-        if show_anomalies else ""
-    ))
+    ax.set_title(title + (" - Anomalies {}".format(len(x)) if show_anomalies else ""))
 
     ax.legend()
     plt.show()
