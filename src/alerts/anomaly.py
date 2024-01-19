@@ -34,10 +34,8 @@ class AnomalyDetector:
 
         return alerts
 
-    def detect_alerts_groups(
-        self, ts: AnomalyTS, span=5
-    ) -> List[List[Event]]:
-        time_proximity=timedelta(days=span)
+    def detect_alerts_groups(self, ts: AnomalyTS, span: int = 5) -> List[List[Event]]:
+        time_proximity = timedelta(days=span)
         alerts = self.detect_alerts(ts)
         alerts_length = len(alerts)
         grouping_alerts = []
